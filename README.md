@@ -5,7 +5,9 @@ This is a utility library for EON Studio.
 
 Usage:
 
-var NU = new NodeUtils(); // Create an instance of the NodeUtils object
+var NU = new NodeUtils(); 
+
+// Create an instance of the NodeUtils object
 
 Now you can access all of the functions within it.
 
