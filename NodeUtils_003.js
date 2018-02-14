@@ -200,8 +200,6 @@ function depth(aNode){
 		i++;
 		depth(aNode);
 	}
-
-	//eon.Trace(eon.GetNodeName(origNode) + ' is ' + i + ' levels deep');
 	return i;
 }
 
