@@ -1,5 +1,6 @@
 function NodeUtils(){ // NodeUtils Object
 	var allNodes = []; // This stores all nodes we get from GetAllNodes
+	var allNodePaths = []; // This stores all node paths
 	
 	//This function returns an array of all nodes starting at rootNode
 	this.GetAllNodes = function(rootNode){
@@ -30,6 +31,30 @@ function NodeUtils(){ // NodeUtils Object
 	this.GetNodeCount = function(){
 		eon.Trace("How many nodes: " + allNodes.length);
 		return allNodes.length;
+	};
+
+	//Returns and array containing all node paths starting from rootNode
+	this.GetAllNodePaths = function(rootNode){
+		if(typeof rootNode == 'undefined' || rootNode == ''){
+			rootNode = eon.FindNode('Simulation');
+		}
+
+		//Get the children of rootNode
+		var children = rootNode.GetFieldByName('TreeChildren').value;
+		//loop through all of its children
+		for(var i = 0; i < children.length; i++){
+			//Only add to allNodes if this childs nodepath does not already occur in global allNodesPath array
+			if(allNodePaths.indexOf(eon.GetNodePath(children[i])) == -1){
+				//push each child node path into the allNodePaths array
+				allNodePaths.push(eon.GetNodePath(children[i]));
+			}
+			//if this child has more than 0 children, then that child becomes the rootNode of the next search
+			if(children[i].GetFieldByName('TreeChildren').value.length != 0){
+				this.GetAllNodePaths(children[i]);
+			}
+		}
+
+		return allNodePaths;
 	};
 
 	//This function returns all the nodes that posses a certain field
@@ -88,10 +113,6 @@ function NodeUtils(){ // NodeUtils Object
 			nodeList[i].GetFieldByName('SetRun').value = true;
 		}
 	}	
-}
-// Node Object
-function node(){
-
 }
 
 /*
