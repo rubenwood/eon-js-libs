@@ -27,11 +27,15 @@ function NodeUtils(){ 		// NodeUtils Object
 		return nodeNames;
 	};
 
-	//This function returns the length of all the nodes from GetAllNodes
-	this.GetNodeCount = function(){
-		eon.Trace("How many nodes: " + allNodes.length);
-		return allNodes.length;
-	};
+	//This function returns the length of all the nodes from a list of 
+	// this.GetNodeCount = function(nodes){
+	// 	eon.Trace("How many nodes: " + allNodes.length);
+
+	// 	if(nodes != null){
+	// 		return nodes.length;
+	// 	}
+	// 	return allNodes.length;
+	// };
 
 	//Returns and array containing all node paths starting from rootNode
 	this.GetAllNodePaths = function(rootNode){
