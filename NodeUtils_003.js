@@ -126,7 +126,7 @@ function NodeUtils(){ 		// NodeUtils Object
 		return fieldNames;
 	};
 
-	//Sets SetRun of a node to true, can pass in a node or a string
+	//Sets SetRun of a node to true, can pass in a node or a string, NOT the same as EnableDisableNodes
 	//NU.on(eon.FindNode("PlaceNode1")); or NU.on("PlaceNode1")
 	this.on = function(aNode){
 		if(typeof aNode == "string"){
