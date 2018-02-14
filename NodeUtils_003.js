@@ -1,6 +1,6 @@
-function NodeUtils(){ // NodeUtils Object
-	var allNodes = []; // This stores all nodes we get from GetAllNodes
-	var allNodePaths = []; // This stores all node paths
+function NodeUtils(){ 		// NodeUtils Object
+	var allNodes = []; 		// This stores all nodes we get from GetAllNodes
+	var allNodePaths = []; 	// This stores all node paths
 	
 	//This function returns an array of all nodes starting at rootNode
 	this.GetAllNodes = function(rootNode){
@@ -55,6 +55,37 @@ function NodeUtils(){ // NodeUtils Object
 		}
 
 		return allNodePaths;
+	};
+
+	//This function enables or disables nodes depening on the value 'v', if true, it enables, if false it disables
+	this.EnableDisableNodes = function(nodes, v){
+		for(var i = 0; i < nodes.length; i++){
+			if(nodes[i].GetIdOfName('Enabled') != -1){
+				nodes[i].GetFieldByName('Enabled').value = v;
+			}
+			if(nodes[i].GetIdOfName('enabled') != -1){
+				nodes[i].GetFieldByName('enabled').value = v;
+			}
+			if(nodes[i].GetIdOfName('Enable') != -1){
+				nodes[i].GetFieldByName('Enable').value = v;
+			}
+			if(nodes[i].GetIdOfName('Active') != -1){
+				nodes[i].GetFieldByName('Active').value = v;
+			}
+			if(nodes[i].GetIdOfName('active') != -1){
+				nodes[i].GetFieldByName('active').value = v;
+			}
+			nodes[i].GetFieldByName('SetRun').value = v;
+			nodes[i].GetFieldByName('SetRun_').value = !v;
+		}
+	};
+	//This function takes an array of nodes and disables them all
+	this.DisableNodes = function(nodes){
+		this.EnableDisableNodes(nodes, false);
+	};
+	//This function takes an array of nodes and enables them all
+	this.EnableNodes = function(nodes){
+		this.EnableDisableNodes(nodes, true);
 	};
 
 	//This function returns all the nodes that posses a certain field
@@ -112,7 +143,43 @@ function NodeUtils(){ // NodeUtils Object
 		for(var i = 0; i < nodeList.length; i++){
 			nodeList[i].GetFieldByName('SetRun').value = true;
 		}
-	}	
+	};
+
+	/***********WORK IN PROGRESS************/
+	//This function will return the type of a node (without using ProgID) WORK IN PROGRESS
+	this.GetNodeType = function(aNode){
+		var fieldCount = aNode.GetFieldCount();
+		//Have to check field count and field names that way we can determine what kind of node it is
+	};
+
+
+	// Return all nodes posessing specific fields (specify an array of nodes to search and an array of field names)
+	this.GetNodesWithFields = function(nodes, fields){
+		//We want to check each node (nodes[i]) and see if it posseses ALL fields
+		//Does node[i] have all these fields?
+		var nodesWithFields = [];
+		var fc = 0;
+		for(var i = 0; i < nodes.length; i++){
+			for(var j = 0; j < fields.length; j++){
+				if(nodes[i].GetIdOfName(fields[j]) == -1){
+					fc = 0;
+					break;
+				}else{
+					fc += 1;
+				}
+			}
+			if(fc == fields.length){
+				nodesWithFields.push(nodes[i]);
+			}
+		}
+		return nodesWithFields;
+	};
+
+	// GetFieldByName regardless of case
+	// lazyGet
+/*	this.lazyGet = function(nodeName){
+		return eon.FindNode(nodeName);
+	}*/
 }
 
 /*
