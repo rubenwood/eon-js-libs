@@ -58,6 +58,7 @@ function NodeUtils(){ 		// NodeUtils Object
 	};
 
 	//This function enables or disables nodes depening on the value 'v', if true, it enables, if false it disables
+	//better to use regex?
 	this.EnableDisableNodes = function(nodes, v){
 		for(var i = 0; i < nodes.length; i++){
 			if(nodes[i].GetIdOfName('Enabled') != -1){
@@ -152,7 +153,6 @@ function NodeUtils(){ 		// NodeUtils Object
 		//Have to check field count and field names that way we can determine what kind of node it is
 	};
 
-
 	// Return all nodes posessing specific fields (specify an array of nodes to search and an array of field names)
 	this.GetNodesWithFields = function(nodes, fields){
 		//We want to check each node (nodes[i]) and see if it posseses ALL fields
@@ -174,12 +174,6 @@ function NodeUtils(){ 		// NodeUtils Object
 		}
 		return nodesWithFields;
 	};
-
-	// GetFieldByName regardless of case
-	// lazyGet
-/*	this.lazyGet = function(nodeName){
-		return eon.FindNode(nodeName);
-	}*/
 }
 
 /*
@@ -194,3 +188,55 @@ Nodes
 		Field Type (EventIn, EventOut, ExposedField)
 		Data Type (SFBool, SFInt32, SFFloat, SFVec3f, SFVec3f, MF-)
 */
+
+/***OTHER STUFF***/
+//Returns the number of levels deep a node is in the simulation tree
+var i = 1;
+function depth(aNode){
+	var origNode = aNode;
+	
+	while(eon.GetNodeName(aNode.GetParentNode()) != 'Simulation'){
+		aNode = aNode.GetParentNode();
+		i++;
+		depth(aNode);
+	}
+
+	//eon.Trace(eon.GetNodeName(origNode) + ' is ' + i + ' levels deep');
+	return i;
+}
+
+// WORK IN PROGRESS, needs to be improved
+//Returns the number of traverses required to reach this node using FindNode (breadth first)
+var tNodes = [];
+var temp = [];
+var x = 0;
+function traverses(aNode, rootNode){
+	if(typeof rootNode == 'undefined' || rootNode == ''){
+		rootNode = eon.FindNode('Simulation');
+	}
+
+	var children = rootNode.GetFieldByName('TreeChildren').value;
+
+	if(tNodes.indexOf(aNode) == -1){
+		for(var i = 0; i < children.length; i++){
+			//Push each child into tNodes
+			tNodes.push(children[i]);
+			//Then first of tNodes will become root of next search
+			temp.push(children[i]);
+		}
+		if(x == 0){
+			x++; //if x is zero then dont slice the head off the array, just use 0
+			traverses(aNode, temp[0]);
+		}else{
+			//if x is greater than 0 (if we have recursed more than once), then
+			temp = temp.slice(1); // slice the head off the temp array
+			traverses(aNode, temp[0]);
+		}
+	}
+
+	//tNodes is nodes sorted into breadth first
+	// tNodes.indexOf(aNode) will be how many nodes need to be traversed to reach that node
+
+	eon.Trace('There were ' + tNodes.indexOf(aNode) + ' traverses to reach this node');
+	return tNodes;
+}
