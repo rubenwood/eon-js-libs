@@ -122,14 +122,6 @@ function NodeUtils(){ 		// NodeUtils Object
 		return fieldNames;
 	};
 
-	//This function will return the type of a node (without using ProgID)
-	this.GetNodeType = function(aNode){
-		var fieldCount = aNode.GetFieldCount(); 		// Get the number of fields this node has
-		var fieldNames = this.GetAllFieldNames(aNode); 	// Get all names of fields for this node
-		//Have to check field count and field names, that way we can determine what kind of node it is
-
-	};
-
 	//Sets SetRun of a node to true, can pass in a node or a string
 	//NU.on(eon.FindNode("PlaceNode1")); or NU.on("PlaceNode1")
 	this.on = function(aNode){
@@ -173,6 +165,14 @@ function NodeUtils(){ 		// NodeUtils Object
 			}
 		}
 		return nodesWithFields;
+	};
+
+	//This function will return the type of a node (without using ProgID)
+	this.GetNodeType = function(aNode){
+		var fieldCount = aNode.GetFieldCount(); 		// Get the number of fields this node has
+		var fieldNames = this.GetAllFieldNames(aNode); 	// Get all names of fields for this node
+		//Have to check field count and field names, that way we can determine what kind of node it is
+
 	};
 }
 
