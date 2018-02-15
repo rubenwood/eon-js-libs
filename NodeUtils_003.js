@@ -126,15 +126,9 @@ function NodeUtils(){ 		// NodeUtils Object
 		}
 		return fieldNames;
 	};
-
-	/***********WORK IN PROGRESS************/
 	//This funciton will copy a node to its parent
 	this.CopyToParent = function(node){
 		eon.CopyNode(node, node.GetParentNode());
-	};
-	//This funciton will copy node to the first child of node, Not needed?
-	this.CopyToChild = function(node){
-
 	};
 	//This function will copy a node to all of the children of rootNode
 	this.CopyToAllChildren = function(node, rootNode){
@@ -151,8 +145,14 @@ function NodeUtils(){ 		// NodeUtils Object
 		}
 	};
 
+	/***********WORK IN PROGRESS************/
+	//This funciton will copy node to the first child of node, Not needed?
+	this.CopyToChild = function(node){
+
+	};
+
 	//This function checks if a node has a rigidbody child
-	this.hasRB = function(node){
+	this.HasRB = function(node){
 		for(var i = 0; i < node.GetFieldByName('TreeChildren').GetMFCount(); i++){
 			if(eon.GetNodeProgID(node.GetFieldByName('TreeChildren').GetMFElement(i)) == 'PhysXNodes.RigidBody.1'){
 				return true;
@@ -162,11 +162,10 @@ function NodeUtils(){ 		// NodeUtils Object
 		}
 	};
 	//This function returns the first rigidbody of a node
-	this.getFirstRBOfNode = function(rootNode){
+	this.GetFirstRBOfNode = function(rootNode){
 		var rb = eon.FindByProgID('PhysXNodes.RigidBody.1', rootNode);
 		return rb.item(0); //return first rigidbody within rootNode
 	};
-
 
 	//This function will return the type of a node (without using ProgID) WORK IN PROGRESS
 	this.GetNodeType = function(aNode){
