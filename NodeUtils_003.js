@@ -144,6 +144,12 @@ function NodeUtils(){ 		// NodeUtils Object
 			eon.CopyNode(node, children.GetMFElement(i));
 		}
 	};
+	//This function works exaclty like copy node, but allows you to specify howmany copies you want to create
+	this.MultCopy = function(node, toNode, numCopies){
+		for(var i = 0; i < numCopies; i++){
+			eon.CopyNode(node, toNode);
+		}
+	};
 
 	//This function checks if a node has a rigidbody child
 	this.hasRB = function(node){
