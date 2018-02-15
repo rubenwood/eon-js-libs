@@ -3,18 +3,20 @@ function NodeUtils(){ 		// NodeUtils Object
 	var allNodePaths = []; 	// This stores all node paths
 	
 	//This function returns an array of all nodes starting at rootNode
-	this.GetAllNodes = function(rootNode){
+	this.GetAllNodes = function(rootNode){ // Watch out for Maximum call stack!!
 		if(rootNode == "" || rootNode == undefined){
 			rootNode = "Simulation";
 		}
 
 		var children = eon.FindNode(rootNode).GetFieldByName('TreeChildren'); //Finds first node and gets its children
+
 		for(var i = 0; i < children.GetMFCount(); i++){
 			allNodes.push(children.GetMFElement(i)); // push this node into array
 			if(children.GetMFElement(i).GetFieldByName('TreeChildren').GetMFCount() != 0){
 				this.GetAllNodes(eon.GetNodeName(children.GetMFElement(i))); // next child becomes rootNode
 			}
 		}
+
 		return allNodes;
 	};
 
@@ -30,7 +32,6 @@ function NodeUtils(){ 		// NodeUtils Object
 	//This function returns the length of all the nodes from a list of 
 	// this.GetNodeCount = function(nodes){
 	// 	eon.Trace("How many nodes: " + allNodes.length);
-
 	// 	if(nodes != null){
 	// 		return nodes.length;
 	// 	}
@@ -126,6 +127,7 @@ function NodeUtils(){ 		// NodeUtils Object
 		return fieldNames;
 	};
 
+	/*********** ON/OFF Switches ************/
 	//Sets SetRun of a node to true, can pass in a node or a string, NOT the same as EnableDisableNodes
 	//NU.on(eon.FindNode("PlaceNode1")); or NU.on("PlaceNode1")
 	this.on = function(aNode){
@@ -143,6 +145,36 @@ function NodeUtils(){ 		// NodeUtils Object
 	};
 
 	/***********WORK IN PROGRESS************/
+	//This funciton will copy a node to its parent
+	this.CopyToParent = function(node){
+		eon.CopyNode(node, node.GetParentNode());
+	};
+	//This funciton will copy node to the first child of node, Not needed?
+	this.CopyToChild = function(node){
+
+	};
+	//This function will copy a node to all of the children of rootNode
+	this.CopyToAllChildren = function(node, rootNode){
+		
+	};
+
+	//This function checks if a node has a rigidbody child
+	this.hasRB = function(node){
+		for(var i = 0; i < node.GetFieldByName('TreeChildren').GetMFCount(); i++){
+			if(eon.GetNodeProgID(node.GetFieldByName('TreeChildren').GetMFElement(i)) == 'PhysXNodes.RigidBody.1'){
+				return true;
+			}else{
+				return false;
+			}
+		}
+	};
+	//This function returns the first rigidbody of a node
+	this.getFirstRBOfNode = function(rootNode){
+		var rb = eon.FindByProgID('PhysXNodes.RigidBody.1', rootNode);
+		return rb.item(0); //return first rigidbody within rootNode
+	};
+
+
 	//This function will return the type of a node (without using ProgID) WORK IN PROGRESS
 	this.GetNodeType = function(aNode){
 		var fieldCount = aNode.GetFieldCount();
@@ -178,6 +210,8 @@ function NodeUtils(){ 		// NodeUtils Object
 		//Have to check field count and field names, that way we can determine what kind of node it is
 
 	};
+
+	//Generate route map?
 }
 
 /*
@@ -194,7 +228,7 @@ Nodes
 */
 
 /***OTHER STUFF***/
-//Returns the number of levels deep a node is in the simulation tree
+// Returns the number of levels deep a node is in the simulation tree
 var i = 1;
 function depth(aNode){
 	var origNode = aNode;
@@ -208,7 +242,7 @@ function depth(aNode){
 }
 
 // WORK IN PROGRESS, needs to be improved
-//Returns the number of traverses required to reach this node using FindNode (breadth first)
+// Returns the number of traverses required to reach this node using FindNode (breadth first)
 var tNodes = [];
 var temp = [];
 var x = 0;
@@ -236,7 +270,7 @@ function traverses(aNode, rootNode){
 		}
 	}
 
-	//tNodes is nodes sorted into breadth first
+	// tNodes is nodes sorted into breadth first
 	// tNodes.indexOf(aNode) will be how many nodes need to be traversed to reach that node
 
 	eon.Trace('There were ' + tNodes.indexOf(aNode) + ' traverses to reach this node');
