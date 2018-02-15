@@ -127,23 +127,6 @@ function NodeUtils(){ 		// NodeUtils Object
 		return fieldNames;
 	};
 
-	/*********** ON/OFF Switches ************/
-	//Sets SetRun of a node to true, can pass in a node or a string, NOT the same as EnableDisableNodes
-	//NU.on(eon.FindNode("PlaceNode1")); or NU.on("PlaceNode1")
-	this.on = function(aNode){
-		if(typeof aNode == "string"){
-			eon.FindNode(aNode).GetFieldByName('SetRun').value = true;
-		}else{
-			aNode.GetFieldByName('SetRun').value = true;
-		}
-	};
-	//Turn all nodes in a list on
-	this.allOn = function(nodeList){
-		for(var i = 0; i < nodeList.length; i++){
-			nodeList[i].GetFieldByName('SetRun').value = true;
-		}
-	};
-
 	/***********WORK IN PROGRESS************/
 	//This funciton will copy a node to its parent
 	this.CopyToParent = function(node){
@@ -155,7 +138,11 @@ function NodeUtils(){ 		// NodeUtils Object
 	};
 	//This function will copy a node to all of the children of rootNode
 	this.CopyToAllChildren = function(node, rootNode){
-		
+		var children = rootNode.GetFieldByName('TreeChildren');
+		for(var i = 0; i < children.GetMFCount(); i++){
+			eon.Trace(eon.GetNodeName(children.GetMFElement(i)));
+			eon.CopyNode(node, children.GetMFElement(i));
+		}
 	};
 
 	//This function checks if a node has a rigidbody child
