@@ -31,6 +31,6 @@ EON10Library.js
 
 - Jaymies EON library updated for EON Studio 10.
 
-EONLibrary.js
+EONLibrary.js (and EONLibrary.min.js)
 
-- Jaymies EON library for EON Studio 9.
+- Jaymies EON library for EON Studio 9. Also has minified version. 
