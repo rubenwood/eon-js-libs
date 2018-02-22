@@ -12,6 +12,7 @@ var NU = new NodeUtils();
 Now you can access all of the functions within it.
 
 Example:
+
 // Will print the names of all nodes in the simulation
 
 eon.Trace(NU.GetAllNodeNames(NU.GetAllNodes()));
