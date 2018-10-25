@@ -1,24 +1,30 @@
-function NodeUtils(){ 		// NodeUtils Object
-	var allNodes = []; 		// This stores all nodes we get from GetAllNodes
-	var allNodePaths = []; 	// This stores all node paths
-	
-	//This function returns an array of all nodes starting at rootNode
-	this.GetAllNodes = function(rootNode){ // Watch out for Maximum call stack!!
-		if(rootNode == "" || rootNode == undefined){
-			rootNode = "Simulation";
+/* TO DO
+Change get all node paths to take an array of nodes 
+Generate Node Tree
+Generate route map?
+*/
+
+function NodeUtils(){ // NodeUtils Object
+	//Get all nodes but the eon.Find way
+	this.GetAllNodes = function(rootName){
+		if(rootName == "" || rootName == undefined){
+			rootName = eon.GetNodeName(eon.FindByProgID('EonD3D.Simulation.1').item(0));
+		}
+		var aNc = eon.Find(/.*/, eon.FindNode(rootName));
+		//All nodes is a collection at this point
+		//So push it into an array
+		var aNa = [];
+		for(var i = 0; i < aNc.Count; i++){
+			aNa.push(aNc.item(i));
 		}
 
-		var children = eon.FindNode(rootNode).GetFieldByName('TreeChildren'); //Finds first node and gets its children
-
-		for(var i = 0; i < children.GetMFCount(); i++){
-			allNodes.push(children.GetMFElement(i)); // push this node into array
-			if(children.GetMFElement(i).GetFieldByName('TreeChildren').GetMFCount() != 0){
-				this.GetAllNodes(eon.GetNodeName(children.GetMFElement(i))); // next child becomes rootNode
-			}
-		}
-
-		return allNodes;
+		return aNa;
 	};
+
+	// Return the sim node, smae as GetAllNodees()[0]
+	this.GetSim = function(){
+		return eon.FindByProgID('EonD3D.Simulation.1').item(0);
+	}
 
 	//This function returns an array containing the names of all the nodes passed in (as an array)
 	this.GetAllNodeNames = function(nodes){
@@ -29,17 +35,17 @@ function NodeUtils(){ 		// NodeUtils Object
 		return nodeNames;
 	};
 
-	//This function returns the length of all the nodes from a list of 
-	// this.GetNodeCount = function(nodes){
-	// 	eon.Trace("How many nodes: " + allNodes.length);
-	// 	if(nodes != null){
-	// 		return nodes.length;
-	// 	}
-	// 	return allNodes.length;
-	// };
+	this.CollectionToArray = function(col){
+		var arr = [];
+		for(var i = 0; i < col.Count; i++){
+			arr.push(col.item(i));
+		}
+		return arr;
+	};
 
-	//Returns and array containing all node paths starting from rootNode
+	// Returns and array containing all node paths starting from rootNode
 	this.GetAllNodePaths = function(rootNode){
+		var allNodePaths = [];
 		if(typeof rootNode == 'undefined' || rootNode == ''){
 			rootNode = eon.FindNode('Simulation');
 		}
@@ -60,6 +66,53 @@ function NodeUtils(){ 		// NodeUtils Object
 		}
 
 		return allNodePaths;
+	};
+
+	// Compares 2 node objects, returns tru if they are the same, false otherwise
+	this.compareNodes = function(n1,n2){
+		if(eon.GetNodePath(n1) == eon.GetNodePath(n2)){
+			return true;
+		}
+		return false;
+	};
+
+	// Swaps to nodes in the simulation tree
+	this.swapNodes = function(n1, n2){
+		//Field values should be maintained when copying, this is important when other nodes are refenced in the nodes being swapped
+
+		eon.CopyNode(n1, n2.GetParentNode()); // copy n1 to parent of n2
+		eon.CopyNode(n2, n1.GetParentNode()); // copy n2 to parent of n1
+		//Delete originals
+		eon.DeleteNode(n1);
+		eon.DeleteNode(n2);
+	};
+
+	// Swaps the references of one field with the refences in another field
+	// Expects two field objects
+	// for now single field
+	this.swapRefs = function(f1, f2){
+		eon.Trace(f1.GetType());
+		if(f1.GetType() != f2.GetType()){
+			eon.MessageBox('Attempting to switch fields of different types!', 'NODE UTILS');
+		}
+
+		// If field.GetType() > 10 then must be multi field
+		// Also assumes both fields are of the same length
+		if(f1.GetType() > 10){
+			var tempf1a = [];
+			var tempf2a = [];
+			for(var i = 0; i < f1.GetMFCount(); i++){
+				tempf1a.push(f1.GetMFElement(i));
+				tempf2a.push(f2.GetMFElement(i));
+				f1.SetMFElement(i, tempf2a[i]);
+				f2.SetMFElement(i, tempf1a[i]);
+			}
+		}else{
+			var tempf1 = f1.value;
+			var tempf2 = f2.value;
+			f1.value = tempf2;
+			f2.value = tempf1;
+		}
 	};
 
 	//This function enables or disables nodes depening on the value 'v', if true, it enables, if false it disables
@@ -126,9 +179,15 @@ function NodeUtils(){ 		// NodeUtils Object
 		}
 		return fieldNames;
 	};
+
+	/***********WORK IN PROGRESS************/
 	//This funciton will copy a node to its parent
 	this.CopyToParent = function(node){
 		eon.CopyNode(node, node.GetParentNode());
+	};
+	//This funciton will copy node to the first child of node, Not needed?
+	this.CopyToChild = function(node){
+
 	};
 	//This function will copy a node to all of the children of rootNode
 	this.CopyToAllChildren = function(node, rootNode){
@@ -145,14 +204,8 @@ function NodeUtils(){ 		// NodeUtils Object
 		}
 	};
 
-	/***********WORK IN PROGRESS************/
-	//This funciton will copy node to the first child of node, Not needed?
-	this.CopyToChild = function(node){
-
-	};
-
 	//This function checks if a node has a rigidbody child
-	this.HasRB = function(node){
+	this.hasRB = function(node){
 		for(var i = 0; i < node.GetFieldByName('TreeChildren').GetMFCount(); i++){
 			if(eon.GetNodeProgID(node.GetFieldByName('TreeChildren').GetMFElement(i)) == 'PhysXNodes.RigidBody.1'){
 				return true;
@@ -162,10 +215,11 @@ function NodeUtils(){ 		// NodeUtils Object
 		}
 	};
 	//This function returns the first rigidbody of a node
-	this.GetFirstRBOfNode = function(rootNode){
+	this.getFirstRBOfNode = function(rootNode){
 		var rb = eon.FindByProgID('PhysXNodes.RigidBody.1', rootNode);
 		return rb.item(0); //return first rigidbody within rootNode
 	};
+
 
 	//This function will return the type of a node (without using ProgID) WORK IN PROGRESS
 	this.GetNodeType = function(aNode){
@@ -195,15 +249,16 @@ function NodeUtils(){ 		// NodeUtils Object
 		return nodesWithFields;
 	};
 
-	//This function will return the type of a node (without using ProgID)
-	this.GetNodeType = function(aNode){
-		var fieldCount = aNode.GetFieldCount(); 		// Get the number of fields this node has
-		var fieldNames = this.GetAllFieldNames(aNode); 	// Get all names of fields for this node
-		//Have to check field count and field names, that way we can determine what kind of node it is
+}
 
-	};
+function calcDistance3D(a, b){
+	// D = √((Ax - Bx)2 + (Ay - By)2 + (Az - Bz)2)
+	return Math.sqrt(Math.pow((a[0]-b[0]), 2) + Math.pow((a[1]-b[1]), 2) + Math.pow((a[2]-b[2]), 2));
+}
 
-	//Generate route map?
+function midpoint3D(a, b){ 
+	// M ( (Ax + Bx)/2 , (Ay + By)/2 , (Az + Bz)/2 )
+	return [(a[0]+b[0])/2, ((a[1]+b[1])/2), ((a[2]+b[2])/2)];
 }
 
 /*
@@ -268,3 +323,5 @@ function traverses(aNode, rootNode){
 	eon.Trace('There were ' + tNodes.indexOf(aNode) + ' traverses to reach this node');
 	return tNodes;
 }
+
+
