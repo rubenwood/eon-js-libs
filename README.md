@@ -15,14 +15,15 @@ More documentation coming soon.
 
 # Other Files
 
-Utilities_not_mobile.js
+[Utilities_not_mobile.js](Utilities_not_mobile.js)
 
 - An old utilities library that does not work on mobile, but may still be of some use.
 
-EON10Library.js
+[EON10Library.js](EON10Library.js)
 
 - Jaymies EON library updated for EON Studio 10.
 
-EONLibrary.js (and EONLibrary.min.js)
+[EONLibrary.js] (EONLibrary.js) (and [EONLibrary.min.js] (EONLibrary.min.js))
 
-- Jaymies EON library for EON Studio 9. Also has minified version. 
+- EON library for EON Studio 9. Also has minified version.
+- Created by Jaymie Timperly, James Corr and Raj Kaul
