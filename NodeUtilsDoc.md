@@ -4,7 +4,6 @@ The node utils library provides many useful functions. Many of these functions  
 
 ### Example Usage:
 ```javscript
-
 // Create an instance of the NodeUtils object
 var NU = new NodeUtils(); 
 ```
