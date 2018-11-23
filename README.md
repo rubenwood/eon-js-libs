@@ -12,6 +12,7 @@ More documentation coming soon.
 
 [Documentation here](NodeUtilsDoc.md)  
 [NodeUtils.js](NodeUtils_004.js)
+[auto-completions for NodeUtils](NodeUtils.sublime-completions)
 
 
 # Other Files
