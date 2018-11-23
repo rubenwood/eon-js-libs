@@ -3,28 +3,24 @@ Change get all node paths to take an array of nodes
 Generate Node Tree
 Generate route map?
 */
-
 function NodeUtils(){ // NodeUtils Object
+	// Return the sim node, smae as GetAllNodees()[0]
+	this.GetSim = function(){
+		return eon.Find(/.*/).item(0);
+	}
+
 	//Get all nodes but the eon.Find way
 	this.GetAllNodes = function(rootName){
 		if(rootName == "" || rootName == undefined){
-			rootName = eon.GetNodeName(eon.FindByProgID('EonD3D.Simulation.1').item(0));
+			rootName = eon.GetNodeName(this.GetSim());
 		}
 		var aNc = eon.Find(/.*/, eon.FindNode(rootName));
 		//All nodes is a collection at this point
 		//So push it into an array
-		var aNa = [];
-		for(var i = 0; i < aNc.Count; i++){
-			aNa.push(aNc.item(i));
-		}
+		var aNa = this.CollectionToArray(aNc);
 
 		return aNa;
 	};
-
-	// Return the sim node, smae as GetAllNodees()[0]
-	this.GetSim = function(){
-		return eon.FindByProgID('EonD3D.Simulation.1').item(0);
-	}
 
 	//This function returns an array containing the names of all the nodes passed in (as an array)
 	this.GetAllNodeNames = function(nodes){
@@ -79,7 +75,6 @@ function NodeUtils(){ // NodeUtils Object
 	// Swaps to nodes in the simulation tree
 	this.swapNodes = function(n1, n2){
 		//Field values should be maintained when copying, this is important when other nodes are refenced in the nodes being swapped
-
 		eon.CopyNode(n1, n2.GetParentNode()); // copy n1 to parent of n2
 		eon.CopyNode(n2, n1.GetParentNode()); // copy n2 to parent of n1
 		//Delete originals
@@ -161,6 +156,28 @@ function NodeUtils(){ // NodeUtils Object
 		return nodesWithField;
 	};
 
+	// Return all nodes posessing specific fields (specify an array of nodes to search and an array of field names)
+	this.GetNodesWithFields = function(nodes, fields){
+		//We want to check each node (nodes[i]) and see if it posseses ALL fields
+		//Does node[i] have all these fields?
+		var nodesWithFields = [];
+		var fc = 0;
+		for(var i = 0; i < nodes.length; i++){
+			for(var j = 0; j < fields.length; j++){
+				if(nodes[i].GetIdOfName(fields[j]) == -1){
+					fc = 0;
+					break;
+				}else{
+					fc += 1;
+				}
+			}
+			if(fc == fields.length){
+				nodesWithFields.push(nodes[i]);
+			}
+		}
+		return nodesWithFields;
+	};
+
 	//This function returns an array of all fields beloning to a node
 	this.GetAllFields = function(aNode){
 		var fields = [];
@@ -180,15 +197,12 @@ function NodeUtils(){ // NodeUtils Object
 		return fieldNames;
 	};
 
-	/***********WORK IN PROGRESS************/
 	//This funciton will copy a node to its parent
 	this.CopyToParent = function(node){
 		eon.CopyNode(node, node.GetParentNode());
 	};
-	//This funciton will copy node to the first child of node, Not needed?
-	this.CopyToChild = function(node){
 
-	};
+	/***********WORK IN PROGRESS************/
 	//This function will copy a node to all of the children of rootNode
 	this.CopyToAllChildren = function(node, rootNode){
 		var children = rootNode.GetFieldByName('TreeChildren');
@@ -226,31 +240,10 @@ function NodeUtils(){ // NodeUtils Object
 		var fieldCount = aNode.GetFieldCount();
 		//Have to check field count and field names that way we can determine what kind of node it is
 	};
-
-	// Return all nodes posessing specific fields (specify an array of nodes to search and an array of field names)
-	this.GetNodesWithFields = function(nodes, fields){
-		//We want to check each node (nodes[i]) and see if it posseses ALL fields
-		//Does node[i] have all these fields?
-		var nodesWithFields = [];
-		var fc = 0;
-		for(var i = 0; i < nodes.length; i++){
-			for(var j = 0; j < fields.length; j++){
-				if(nodes[i].GetIdOfName(fields[j]) == -1){
-					fc = 0;
-					break;
-				}else{
-					fc += 1;
-				}
-			}
-			if(fc == fields.length){
-				nodesWithFields.push(nodes[i]);
-			}
-		}
-		return nodesWithFields;
-	};
-
 }
 
+
+//*** OTHER ***/
 function calcDistance3D(a, b){
 	// D = √((Ax - Bx)2 + (Ay - By)2 + (Az - Bz)2)
 	return Math.sqrt(Math.pow((a[0]-b[0]), 2) + Math.pow((a[1]-b[1]), 2) + Math.pow((a[2]-b[2]), 2));
@@ -274,7 +267,7 @@ Nodes
 		Data Type (SFBool, SFInt32, SFFloat, SFVec3f, SFVec3f, MF-)
 */
 
-/***OTHER STUFF***/
+/***EXPERIMENTAL***/
 // Returns the number of levels deep a node is in the simulation tree
 var i = 1;
 function depth(aNode){
