@@ -36,83 +36,83 @@ NOTE: In the case of functions in the other and experimental sections you won’
 # Functions
 
 GetSim  
-Returns the simulation node (regardless of name)
+<i>Returns the simulation node (regardless of name)</i>
 
 GetAllNodes  
-Returns an array of all of the nodes in the subtree, starting at a root node
+<i>Returns an array of all of the nodes in the subtree, starting at a root node</i>
 
 GetAllNodeNames  
-Returns an array of all of the names of nodes in a list of nodes
+<i>Returns an array of all of the names of nodes in a list of nodes</i>
 
 CollectionToArray  
-Converts a collection object into an array
+<i>Converts a collection object into an array</i>
 
 GetAllNodePaths  
-Returns an array of node paths (strings) in a subtree starting from a root node
+<i>Returns an array of node paths (strings) in a subtree starting from a root node</i>
 
 compareNodes  
-Compares 2 nodes, returns true if they are the same node, false otherwise
+<i>Compares 2 nodes, returns true if they are the same node, false otherwise</i>
 
 swapNodes  
-Swaps two nodes in the simulation tree
+<i>Swaps two nodes in the simulation tree</i>
 
 swapRefs  
-Swaps the references in one field with another field of the same type, works for both single field and multiple field
+<i>Swaps the references in one field with another field of the same type, works for both single field and multiple field</i>
 
 EnableNodes  
-Enables all nodes in an array  
-Sets fields; Enabled, enabled, Enable, Active, active and SetRun to true  
-Sets field; SetRun_ to false  
+<i>Enables all nodes in an array  </i>
+<i>Sets fields; Enabled, enabled, Enable, Active, active and SetRun to true  </i>
+<i>Sets field; SetRun_ to false </i> 
 
 DisableNodes  
-Disables all nodes in an array (opposite of Enable nodes)  
-Sets fields; Enabled, enabled, Enable, Active, active and SetRun to false  
-Sets field; SetRun_ to true  
+<i>Disables all nodes in an array (opposite of Enable nodes)  </i>
+<i>Sets fields; Enabled, enabled, Enable, Active, active and SetRun to false  </i>
+<i>Sets field; SetRun_ to true  </i>
 
 GetNodesWithField  
-Returns an array of nodes possessing a certain field
+<i>Returns an array of nodes possessing a certain field</i>
 
 GetNodesWithFields 
-Returns an array of nodes possessing all fields 
+<i>Returns an array of nodes possessing all fields </i>
 
 GetAllFields  
-Returns an array of all fields belonging to a node
+<i>Returns an array of all fields belonging to a node</i>
 
 GetAllFieldNames  
-Returns an array of all of the names (strings) of a list of fields
+<i>Returns an array of all of the names (strings) of a list of fields</i>
 
 CopyToParent 
-Copies a node to its parent node
+<i>Copies a node to its parent node</i>
 
 CopyToAllChildren  
-Copies a node to all of the children of a root node
+<i>Copies a node to all of the children of a root node</i>
 
 MultCopy  
-Performs a eon.CopyNode multiple times
-Works exactly like copy node, just add a number of copies you would like to create
+<i>Performs a eon.CopyNode multiple times</i>
+<i>Works exactly like copy node, just add a number of copies you would like to create</i>
 
 hasRB  
-Checks to see if a node has a rigid body as a child (return true if found, false otherwise)
+<i>Checks to see if a node has a rigid body as a child (return true if found, false otherwise)</i>
 
 getFirstRBOfNode  
-Returns the first rigid body starting from a root node
+<i>Returns the first rigid body starting from a root node</i>
 
 GetNodeType  
-NOT IMPLEMENTED
+<i>NOT IMPLEMENTED</i>
 
 # Other
 
 calcDistance3D  
-Calculates the distance between two 3-dimensional points
+<i>Calculates the distance between two 3-dimensional points</i>
 
 midpoint3D  
-Calculates the midpoint of a line between two 3-dimensional points
+<i>Calculates the midpoint of a line between two 3-dimensional points</i>
 
 
 # Experimental
 
 depth  
-Returns the number (int) of levels deep a node is in the simulation tree
+<i>Returns the number (int) of levels deep a node is in the simulation tree</i>
 
 traverses  
-Returns the number of traverses required to reach a node using eon.FindNode (breadth first)
+<i>Returns the number of traverses required to reach a node using eon.FindNode (breadth first)</i>
