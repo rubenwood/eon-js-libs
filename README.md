@@ -23,7 +23,7 @@ More documentation coming soon.
 
 - Jaymies EON library updated for EON Studio 10.
 
-[EONLibrary.js] (EONLibrary.js) (and [EONLibrary.min.js] (EONLibrary.min.js))
+[EONLibrary.js](EONLibrary.js) (and [EONLibrary.min.js](EONLibrary.min.js))
 
 - EON library for EON Studio 9. Also has minified version.
 - Created by Jaymie Timperly, James Corr and Raj Kaul
