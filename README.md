@@ -10,7 +10,8 @@ More documentation coming soon.
 
 # Node Utils
 
-[Documentation here](NodeUtilsDoc.md)
+[Documentation here](NodeUtilsDoc.md)  
+[NodeUtils.js](NodeUtils_004.js)
 
 
 # Other Files
