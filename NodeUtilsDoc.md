@@ -35,85 +35,84 @@ NOTE: In the case of functions in the other and experimental sections you won’
 
 # Functions
 
-GetSim
+GetSim  
 Returns the simulation node (regardless of name)
 
-GetAllNodes
+GetAllNodes  
 Returns an array of all of the nodes in the subtree, starting at a root node
 
-GetAllNodeNames
+GetAllNodeNames  
 Returns an array of all of the names of nodes in a list of nodes
 
-CollectionToArray
+CollectionToArray  
 Converts a collection object into an array
 
-GetAllNodePaths
+GetAllNodePaths  
 Returns an array of node paths (strings) in a subtree starting from a root node
 
-compareNodes
+compareNodes  
 Compares 2 nodes, returns true if they are the same node, false otherwise
 
-swapNodes
+swapNodes  
 Swaps two nodes in the simulation tree
 
-swapRefs
+swapRefs  
 Swaps the references in one field with another field of the same type, works for both single field and multiple field
 
-EnableNodes
-Enables all nodes in an array
-Sets fields; Enabled, enabled, Enable, Active, active and SetRun to true
-Sets field; SetRun_ to false
+EnableNodes  
+Enables all nodes in an array  
+Sets fields; Enabled, enabled, Enable, Active, active and SetRun to true  
+Sets field; SetRun_ to false  
 
-DisableNodes
-Disables all nodes in an array (opposite of Enable nodes)
-Sets fields; Enabled, enabled, Enable, Active, active and SetRun to false
-Sets field; SetRun_ to true
+DisableNodes  
+Disables all nodes in an array (opposite of Enable nodes)  
+Sets fields; Enabled, enabled, Enable, Active, active and SetRun to false  
+Sets field; SetRun_ to true  
 
-GetNodesWithField
+GetNodesWithField  
 Returns an array of nodes possessing a certain field
 
-
-GetNodesWithFields
+GetNodesWithFields 
 Returns an array of nodes possessing all fields 
 
-GetAllFields
+GetAllFields  
 Returns an array of all fields belonging to a node
 
-GetAllFieldNames
+GetAllFieldNames  
 Returns an array of all of the names (strings) of a list of fields
 
-CopyToParent
+CopyToParent 
 Copies a node to its parent node
 
-CopyToAllChildren
+CopyToAllChildren  
 Copies a node to all of the children of a root node
 
-MultCopy
+MultCopy  
 Performs a eon.CopyNode multiple times
 Works exactly like copy node, just add a number of copies you would like to create
 
-hasRB
+hasRB  
 Checks to see if a node has a rigid body as a child (return true if found, false otherwise)
 
-getFirstRBOfNode
+getFirstRBOfNode  
 Returns the first rigid body starting from a root node
 
-GetNodeType
+GetNodeType  
 NOT IMPLEMENTED
 
 # Other
 
-calcDistance3D
+calcDistance3D  
 Calculates the distance between two 3-dimensional points
 
-midpoint3D
+midpoint3D  
 Calculates the midpoint of a line between two 3-dimensional points
 
 
 # Experimental
 
-depth
+depth  
 Returns the number (int) of levels deep a node is in the simulation tree
 
-traverses
+traverses  
 Returns the number of traverses required to reach a node using eon.FindNode (breadth first)
