@@ -33,7 +33,7 @@ NU.GetAllNodes();
 ```
 NOTE: In the case of functions in the other and experimental sections you won’t need to use the NodeUtils object.
 
-Functions
+# Functions
 
 GetSim
 Returns the simulation node (regardless of name)
