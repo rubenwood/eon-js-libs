@@ -10,7 +10,7 @@ More documentation coming soon.
 
 # Node Utils
 
-This is a utility library for EON Studio. Created by me.
+The node utils library provides many useful functions. Many of these functions  perform general purpose ‘macro’ actions, for example, where you would usually write a for loop to get all of the nodes in a subtree and push them into an array, or write a loop to store all the fields belonging to a node, you can just use one of the functions in this library.
 
 Usage:
 
