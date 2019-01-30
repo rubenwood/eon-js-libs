@@ -1,10 +1,9 @@
 /* TO DO
-Change get all node paths to take an array of nodes 
 Generate Node Tree
 Generate route map?
 */
 function NodeUtils(){ // NodeUtils Object
-	// Return the sim node, smae as GetAllNodees()[0]
+	// Return the sim node, same as GetAllNodes()[0]
 	this.GetSim = function(){
 		return eon.Find(/.*/).item(0);
 	}
@@ -39,26 +38,12 @@ function NodeUtils(){ // NodeUtils Object
 		return arr;
 	};
 
-	// Returns and array containing all node paths starting from rootNode
-	this.GetAllNodePaths = function(rootNode){
+	// Returns an array containing all node paths of an array of nodes
+	this.GetAllNodePaths = function(nodes){
 		var allNodePaths = [];
-		if(typeof rootNode == 'undefined' || rootNode == ''){
-			rootNode = eon.FindNode('Simulation');
-		}
 
-		//Get the children of rootNode
-		var children = rootNode.GetFieldByName('TreeChildren').value;
-		//loop through all of its children
-		for(var i = 0; i < children.length; i++){
-			//Only add to allNodes if this childs nodepath does not already occur in global allNodesPath array
-			if(allNodePaths.indexOf(eon.GetNodePath(children[i])) == -1){
-				//push each child node path into the allNodePaths array
-				allNodePaths.push(eon.GetNodePath(children[i]));
-			}
-			//if this child has more than 0 children, then that child becomes the rootNode of the next search
-			if(children[i].GetFieldByName('TreeChildren').value.length != 0){
-				this.GetAllNodePaths(children[i]);
-			}
+		for(var i = 0; i < nodes.length; i++){
+			allNodePaths.push(eon.GetNodePath(nodes[i]));
 		}
 
 		return allNodePaths;
@@ -316,5 +301,3 @@ function traverses(aNode, rootNode){
 	eon.Trace('There were ' + tNodes.indexOf(aNode) + ' traverses to reach this node');
 	return tNodes;
 }
-
-
