@@ -47,7 +47,7 @@ CollectionToArray
 <i>Converts a collection object into an array</i>
 
 GetAllNodePaths  
-<i>Returns an array of node paths (strings) in a subtree starting from a root node</i>
+<i>Returns an array of node paths (strings) in an array of nodes</i>
 
 compareNodes  
 <i>Compares 2 nodes, returns true if they are the same node, false otherwise</i>
