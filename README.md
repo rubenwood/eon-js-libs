@@ -3,7 +3,7 @@ EON Studio JS Libraries
 
 Here you will find various javascript libraries for use in EON Studio.
 
-The EONLibrary and EON10Library files are really useful libraries created by Jaymie Timperly and other former EONites. They stil work and have there own documentation (coming soon)
+The EONLibrary and EON10Library files are really useful libraries created by Jaymie Timperly and other former EONites. They still work and have there own documentation (coming soon)
 
 The Node Utils library was created by myself to perform various actions I find I need often when writing scripts in EON Studio.
 More documentation coming soon.
