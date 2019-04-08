@@ -11,8 +11,15 @@ More documentation coming soon.
 # EON Node Utils
 
 [Documentation here](NodeUtilsDoc.md) 
+
 [eonNU.js](eonNU_001.js)
+
+[auto-completions for eonNU](eonNU.sublime-completions)
+
+deprecated use eonNU instead:
+
 [NodeUtils.js](NodeUtils_004.js)
+
 [auto-completions for NodeUtils](NodeUtils.sublime-completions)
 
 
