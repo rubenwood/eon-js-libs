@@ -29,15 +29,15 @@ NOTE: In the case of functions in the other and experimental sections you won’
 
 # Functions
 
-EON Object, all of these begin with eon.
+## EON Object, all of these begin with eon.
 
 GetSim  
 <i>Returns the simulation node (regardless of name)</i>
 
-GetSimData
-<i>eturns the statistics data of the simulation (String Array)</i> 
+GetSimData  
+<i>Returns the statistics data of the simulation (String Array)</i> 
 
-fps
+fps  
 <i>Returns the current fps</i>
 
 GetAllNodes  
@@ -96,7 +96,7 @@ getFirstRBOfNode
 GetNodeType  
 <i>NOT IMPLEMENTED</i>
 
-NODE Object
+## NODE Object
 
 setFOV
 <i>If the node is a camera then set its fov to input value</i>
@@ -107,7 +107,7 @@ GetAllFields
 GetAllFieldNames
 <i>Returns an array of all the field names belonging to a node</i>
 
-FIELD Object
+## FIELD Object
 
 randV3
 <i>Randomize values in SFVec3, between 0 and 1</i>
@@ -121,7 +121,7 @@ randFloat
 GetTypeStr
 <i>Returns the dataype of the field as a string value</i>
 
-# Other
+## Other
 
 calcDistance3D  
 <i>Calculates the distance between two 3-dimensional points</i>
@@ -130,7 +130,7 @@ midpoint3D
 <i>Calculates the midpoint of a line between two 3-dimensional points</i>
 
 
-# Experimental
+## Experimental
 
 hasRB
 <i>This function checks if a node has a rigidbody child, returns true if so, else false</i>
