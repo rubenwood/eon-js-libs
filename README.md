@@ -8,9 +8,10 @@ The EONLibrary and EON10Library files are really useful libraries created by Jay
 The Node Utils library was created by myself to perform various actions I find I need often when writing scripts in EON Studio.
 More documentation coming soon.
 
-# Node Utils
+# EON Node Utils
 
-[Documentation here](NodeUtilsDoc.md)  
+[Documentation here](NodeUtilsDoc.md) 
+[eonNU.js](eonNU_001.js)
 [NodeUtils.js](NodeUtils_004.js)
 [auto-completions for NodeUtils](NodeUtils.sublime-completions)
 
