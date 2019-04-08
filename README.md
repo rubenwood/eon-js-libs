@@ -16,11 +16,10 @@ More documentation coming soon.
 
 [auto-completions for eonNU](eonNU.sublime-completions)
 
-deprecated use eonNU instead:
 
-[NodeUtils.js](NodeUtils_004.js)
+[NodeUtils.js](NodeUtils_004.js) deprecated use eonNU instead
 
-[auto-completions for NodeUtils](NodeUtils.sublime-completions)
+[auto-completions for NodeUtils](NodeUtils.sublime-completions) deprecated use eonNU instead
 
 
 # Other Files
