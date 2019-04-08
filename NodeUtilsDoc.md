@@ -5,7 +5,7 @@ The node utils library provides many useful functions. Many of these functions  
 ### Example Usage:
 Use these methods as you would any regular eon method. 
 
-Functions in the EON Object section are preceded by "<i>eon.</i>GetSimData()"
+Functions in the EON Object section are preceded by the eon object, i.e; "<i>eon.</i>GetSimData()"
 
 Functions in the NODE Object section are preceded by a node object, i.e; "<i>eon.FindNode("Camera").</i>GetAllFieldNames()"
 
