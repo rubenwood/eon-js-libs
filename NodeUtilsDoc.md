@@ -1,41 +1,37 @@
-# NodeUtils
+# EON NodeUtils (eonNU)
 
 The node utils library provides many useful functions. Many of these functions  perform general purpose ‘macro’ actions, for example, where you would usually write a for loop to get all of the nodes in a subtree and push them into an array, or write a loop to store all the fields belonging to a node, you can just use one of the functions in this library.
 
 ### Example Usage:
-```javscript
-// Create an instance of the NodeUtils object
-var NU = new NodeUtils(); 
-```
-
-Now you can access all of the functions within it.
-
-For example:
 ```javascript
+var allnodes = eon.GetAllNodes();
+
 // Will print the names of all nodes in the simulation
-eon.Trace(NU.GetAllNodeNames(NU.GetAllNodes()));
+eon.Trace(eon.GetAllNodeNames(eon.GetAllNodes()));
 
 //Disables all nodes starting from rootNode
-NU.DisableNodes(NU.GetAllNodes(rootNode));
+eon.DisableNodes(eon.GetAllNodes(rootNode));
 ```
 # Setting up
 
-Include this in your includes field
-
-Once included create an instance of the NodeUtils object in your script.
+Include this in your includes field, once included call the methods as usual
 ```javascript
-var NU = new NodeUtils();
-```
-From now on, whenever you want to use the NodeUtils object use the instance (variable) name, e.g:
-```javacript
-NU.GetAllNodes();
+var allnodes = eon.GetAllNodes();
 ```
 NOTE: In the case of functions in the other and experimental sections you won’t need to use the NodeUtils object.
 
 # Functions
 
+EON Node Object, all of these begin with eon.
+
 GetSim  
 <i>Returns the simulation node (regardless of name)</i>
+
+GetSimData
+<i>eturns the statistics data of the simulation (String Array)</i> 
+
+fps
+<i>Returns the current fps</i>
 
 GetAllNodes  
 <i>Returns an array of all of the nodes in the subtree, starting at a root node</i>
@@ -74,12 +70,6 @@ GetNodesWithField
 GetNodesWithFields 
 <i>Returns an array of nodes possessing all fields </i>
 
-GetAllFields  
-<i>Returns an array of all fields belonging to a node</i>
-
-GetAllFieldNames  
-<i>Returns an array of all of the names (strings) of a list of fields</i>
-
 CopyToParent 
 <i>Copies a node to its parent node</i>
 
@@ -99,6 +89,31 @@ getFirstRBOfNode
 GetNodeType  
 <i>NOT IMPLEMENTED</i>
 
+EON Node Object
+
+setFOV
+<i>If the node is a camera then set its fov to input value</i>
+
+GetAllFields  
+<i>Returns an array of all fields belonging to a node</i>
+
+GetAllFieldNames
+<i>Returns an array of all the field names belonging to a node</i>
+
+EON Field Object
+
+randV3
+<i>Randomize values in SFVec3, between 0 and 1</i>
+
+randV2
+<i>Randomize values in SFVec2, between 0 and 1</i>
+
+randFloat
+<i>Randomize float value, betwen 0 and 1</i>
+
+GetTypeStr
+<i>Returns the dataype of the field as a string value</i>
+
 # Other
 
 calcDistance3D  
@@ -109,6 +124,12 @@ midpoint3D
 
 
 # Experimental
+
+hasRB
+<i>This function checks if a node has a rigidbody child, returns true if so, else false</i>
+
+getFirstRBOfNode
+<i>This function returns the first rigidbody of a node</i>
 
 depth  
 <i>Returns the number (int) of levels deep a node is in the simulation tree</i>
