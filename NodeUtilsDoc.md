@@ -3,6 +3,13 @@
 The node utils library provides many useful functions. Many of these functions  perform general purpose ‘macro’ actions, for example, where you would usually write a for loop to get all of the nodes in a subtree and push them into an array, or write a loop to store all the fields belonging to a node, you can just use one of the functions in this library.
 
 ### Example Usage:
+Use these methods as you would any regular eon method. 
+
+Functions in the EON Object section are preceded by "<i>eon.</i>GetSimData()"
+
+Functions in the NODE Object section are preceded by a node object, i.e; "<i>eon.FindNode("Camera").</i>GetAllFieldNames()"
+
+Functions in the FIELD Object section are preceded by a field object, i.e; "<i>eon.FindNode("Camera").GetFieldByName("Position").</i>randv3()"
 ```javascript
 var allnodes = eon.GetAllNodes();
 
@@ -22,7 +29,7 @@ NOTE: In the case of functions in the other and experimental sections you won’
 
 # Functions
 
-EON Node Object, all of these begin with eon.
+EON Object, all of these begin with eon.
 
 GetSim  
 <i>Returns the simulation node (regardless of name)</i>
@@ -89,7 +96,7 @@ getFirstRBOfNode
 GetNodeType  
 <i>NOT IMPLEMENTED</i>
 
-EON Node Object
+NODE Object
 
 setFOV
 <i>If the node is a camera then set its fov to input value</i>
@@ -100,7 +107,7 @@ GetAllFields
 GetAllFieldNames
 <i>Returns an array of all the field names belonging to a node</i>
 
-EON Field Object
+FIELD Object
 
 randV3
 <i>Randomize values in SFVec3, between 0 and 1</i>
