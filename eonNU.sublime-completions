@@ -1,0 +1,100 @@
+{
+	"scope": "source.js -string -comment -constant",
+
+	"completions": 
+	[
+		"eonthis",
+		 { 
+		 	"trigger": ".GetAllNodes", 
+		 	"contents": ".GetAllNodes(${1:rootNode})" 
+		 },
+		 { 
+		 	"trigger": ".GetSim", 
+		 	"contents": ".GetSim()" 
+		 },
+		 { 
+		 	"trigger": ".GetAllNodeNames", 
+		 	"contents": ".GetAllNodeNames(${1:nodes})" 
+		 },
+		 { 
+		 	"trigger": ".CollectionToArray", 
+		 	"contents": ".CollectionToArray(${1:collection})" 
+		 },
+		 { 
+		 	"trigger": ".GetAllNodePaths", 
+		 	"contents": ".GetAllNodePaths(${1:rootNode})" 
+		 },
+		 { 
+		 	"trigger": ".compareNodes", 
+		 	"contents": ".compareNodes(${1:node1}, ${2:node2})" 
+		 },
+		 { 
+		 	"trigger": ".swapNodes", 
+		 	"contents": ".swapNodes(${1:node1}, ${2:node2})" 
+		 },
+		 { 
+		 	"trigger": ".swapRefs", 
+		 	"contents": ".swapRefs(${1:field1}, ${2:field2})" 
+		 },
+		 { 
+		 	"trigger": ".DisableNodes", 
+		 	"contents": ".DisableNodes(${1:nodes})" 
+		 },
+		 { 
+		 	"trigger": ".EnableNodes", 
+		 	"contents": ".EnableNodes(${1:nodes})" 
+		 },
+		 { 
+		 	"trigger": ".GetNodesWithField", 
+		 	"contents": ".GetNodesWithField(${1:nodes}, ${2:field})" 
+		 },
+		 { 
+		 	"trigger": ".GetNodesWithFields", 
+		 	"contents": ".GetNodesWithFields(${1:nodes}, ${2:fields})" 
+		 },
+		 { 
+		 	"trigger": ".GetAllFields", 
+		 	"contents": ".GetAllFields(${1:node})" 
+		 },
+		 { 
+		 	"trigger": ".GetAllFieldNames", 
+		 	"contents": ".GetAllFieldNames(${1:node})" 
+		 },
+		 { 
+		 	"trigger": ".CopyToParent", 
+		 	"contents": ".CopyToParent(${1:node})" 
+		 },
+		 { 
+		 	"trigger": ".CopyToAllChildren", 
+		 	"contents": ".CopyToAllChildren(${1:node}, ${2:rootNode})" 
+		 },
+		 { 
+		 	"trigger": ".MultCopy", 
+		 	"contents": ".MultCopy(${1:node}, ${2:toNode}, ${3:times})" 
+		 },
+		 { 
+		 	"trigger": ".hasRB", 
+		 	"contents": ".hasRB(${1:node})" 
+		 },
+		 { 
+		 	"trigger": ".getFirstRBOfNode", 
+		 	"contents": ".getFirstRBOfNode(${1:rootNode})" 
+		 },
+		 { 
+		 	"trigger": "calcDistance3D", 
+		 	"contents": "calcDistance3D(${1:a}, ${2:b})" 
+		 },
+		 { 
+		 	"trigger": "midpoint3D", 
+		 	"contents": "midpoint3D(${1:a}, ${2:b})" 
+		 },
+		 { 
+		 	"trigger": "depth", 
+		 	"contents": "depth(${1:node})" 
+		 },
+		 { 
+		 	"trigger": "traverses", 
+		 	"contents": "traverses(${1:node}, ${2:rootNode})" 
+		 }
+	]
+}
