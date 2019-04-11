@@ -98,27 +98,27 @@ GetNodeType
 
 ## NODE Object
 
-setFOV
+setFOV  
 <i>If the node is a camera then set its fov to input value</i>
 
 GetAllFields  
 <i>Returns an array of all fields belonging to a node</i>
 
-GetAllFieldNames
+GetAllFieldNames  
 <i>Returns an array of all the field names belonging to a node</i>
 
 ## FIELD Object
 
-randV3
+randV3  
 <i>Randomize values in SFVec3, between 0 and 1</i>
 
-randV2
+randV2  
 <i>Randomize values in SFVec2, between 0 and 1</i>
 
-randFloat
+randFloat  
 <i>Randomize float value, betwen 0 and 1</i>
 
-GetTypeStr
+GetTypeStr  
 <i>Returns the dataype of the field as a string value</i>
 
 ## Other
