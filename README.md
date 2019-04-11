@@ -10,7 +10,7 @@ More documentation coming soon.
 
 # EON Node Utils (eonNU)
 
-[Documentation here](NodeUtilsDoc.md) 
+[Documentation here](EONNodeUtilsDoc.md) 
 
 [eonNU.js](eonNU_001.js)
 
